@@ -11,7 +11,6 @@
 
 TBA
 
-
 ## Getting Started
 
 To get a local copy up and running follow these simple example steps.
@@ -37,8 +36,6 @@ Setup database with:
    rails db:migrate
 ```
 
-
-
 ### Usage
 
 Start server with:
@@ -63,7 +60,17 @@ TBA
 
 ## Authors
 
-TBA
+👤 **Paul Ogolla**
+
+- Github: [@paulzay](https://github.com/paulzay)
+- Twitter: [@_paulzay_](https://twitter.com/_paulzay_)
+- Linkedin: [Paul Ogolla](https://linkedin.com/in/paulogolla)
+
+👤 **Dickens Juma**
+
+- LinkedIn: [Dickens Juma](https://www.linkedin.com/in/dickens-juma/)
+- GitHub: [@DickensJuma](https://github.com/DickensJuma)
+- Twitter: [@juma_dickens](https://twitter.com/juma_dickens)
 
 ## 🤝 Contributing
 
@@ -77,9 +84,4 @@ Give a ⭐️ if you like this project!
 
 ## Acknowledgments
 
-TBA
-
 ## 📝 License
-
-TBA
-
