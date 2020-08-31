@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     resources :likes, only: [:create, :destroy]
   end
 
-
+# resources :friends 
   get 'friends', to: 'friendships#index', as: 'friends'
   post 'friends/create/:id', to: 'friendships#create', as: 'add_friend'
   put 'friends/accept.:id', to: 'friendships#accept', as: 'accept_request'

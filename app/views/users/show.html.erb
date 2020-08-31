@@ -7,18 +7,6 @@
     </ul>
   </article>
 
-  <h2 class="small_v_space">Waiting your approval</h2>
-<ul>
-  <% for user in @user.inverse_friendships %>
-    <% if user.friends.exists?(@user) and not @user.friends.exists?(user) %>
-      <li>
-        <%=h user.name %>
-          (<%= link_to "Accept", friendships_path(:friend_id => user), :method => :post %>,
-           <%= link_to "Ignore", friendship_path(:id => friendship_id, :friend_id => user.id), :method => :delete  %>)
-      </li
-    <% end %>
-  <% end %>
-</ul>
 
 
 <% if current_user && current_user != @user && !current_user.friendships.exists?(@user.id) %>
