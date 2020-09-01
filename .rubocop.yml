@@ -5,7 +5,6 @@ AllCops:
     - "config/**/*"
     - "Guardfile"
     - "Rakefile"
-    - "README.md"
     - "node_modules/**/*"
 
   DisplayCopNames: true
@@ -48,6 +47,16 @@ Layout/ExtraSpacing:
 Layout/MultilineMethodCallIndentation:
   Enabled: true
   EnforcedStyle: indented
+Lint/RaiseException:
+  Enabled: false
+Lint/StructNewOverride:
+  Enabled: false
+Style/HashEachMethods:
+  Enabled: false
+Style/HashTransformKeys:
+  Enabled: false
+Style/HashTransformValues:
+  Enabled: false
 Lint/ShadowingOuterLocalVariable:
   Enabled: false
 Lint/Void:
