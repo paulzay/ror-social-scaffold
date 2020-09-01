@@ -3,14 +3,16 @@ class Friendship < ActiveRecord::Base
 	belongs_to :friend, :class_name => 'User'
 
 
-	def self.request(user, friend)
-		unless user == friend
-			transaction do
-				create(:user => user, :friend => friend)
-				create(:user => friend, :friend => user)
-			end
-		end
-	end
+	
+
+    def self.request(user, friend)
+        unless user == friend or Friendship.exists?(user, friend)
+            transaction do
+                create(:user => user, :friend => friend, :status => 'pending')
+                create(:user => friend, :friend => user, :status => 'requested')
+            end
+        end
+    end
 
 	def self.accept(user, friend)
 		transaction do
@@ -20,19 +22,14 @@ class Friendship < ActiveRecord::Base
 		end
 	end
 
-	def self.breakup(user, friend)
-    transaction do
-      destroy(find_by_user_id_and_friend_id(user, friend))
-      destroy(find_by_user_id_and_friend_id(friend, user))
-      end
-  	end
+	
 
   	private
 
-	def self.accept_one_side(user, friend, updated_at)
-		request = find_by_user_id_and_friend_id(user, friend)
-		# request.status = 'accepted'
-		request.updated_at = updated_at
-		request.save!
-	end
+	
+
+	  def self.accept_one_side(user, friend, accepted_at)
+        request = find_by_user_id_and_friend_id(user, friend)
+        request.save!
+    end
 end

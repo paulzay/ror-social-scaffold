@@ -7,6 +7,8 @@
     </ul>
   </article>
 
+<%= link_to "My friends>>", friends_path(@user), class:"btn btn-primary btn-xs" %>
+
 
 
 <% if current_user && current_user != @user && !current_user.friendships.exists?(@user.id) %>

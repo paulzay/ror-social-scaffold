@@ -1,24 +1,24 @@
 <div class="panel panel-default">
 <% if @friends.count > 0  || @requested_friends.count > 0 %>
-<h2 align="center" class="panel panel-primary">My Friends</h2>
+<h2 style="text-align:center" class="panel panel-primary">My Friends</h2>
 	<table class="table table-striped">
-		<thread>
+		<th>
 			<tr>
 				<th>Name</th>
 				<th> Request </th>
 			</tr>
-		</thread>
+		</th>
 		<tbody>
 			<% @friends.each do |friend| %>
 			<tr>	
 				<td><%= friend.friend.name %></td>
 				<td>
 					<%= link_to "View Profile", user_path(friend), class:"btn btn-primary btn-xs" %>
-					<%= link_to 'Remove Friend', deny_request_path(friend), method: :delete, :confirm => "Are you sure?", :class => "btn btn-xs btn-danger" %>
+					
 				</td>
 			</tr>
 			<% end %>
-
+			
 			<% @requested_friends.each do |requested_friend| %>
 			<tr>
 			
@@ -26,7 +26,8 @@
 				<td>
 					<%= link_to "View Profile", user_path(requested_friend), class:"btn btn-primary btn-xs" %>
 					<%= link_to "Accept", accept_request_path(requested_friend), method: :put, class:"btn btn-default btn-xs" %>
-					<%= link_to "Decline", deny_request_path(requested_friend), method: :delete, class: "btn btn-xs btn-danger" %>
+					
+					
 				</td>
 			</tr>
 			<% end %>

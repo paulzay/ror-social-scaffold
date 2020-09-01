@@ -25,11 +25,6 @@ class FriendshipsController < ApplicationController
     	redirect_to friends_path
 	end
 
-	def deny
-		Friendship.breakup(@user1, @friend)
-      	flash[:notice] = "Friend request from #{@friend.name} has been declined."
-    	redirect_to friends_path
-	end
 
 	def destroy
 		Friendship.breakup(@user1, @friend)
