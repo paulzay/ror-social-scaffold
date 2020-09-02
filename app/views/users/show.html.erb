@@ -7,11 +7,16 @@
     </ul>
   </article>
 
-<%= link_to "My friends>>", friends_path(@user), class:"btn btn-primary btn-xs" %>
-
-
-
-<% if current_user && current_user != @user && !current_user.friendships.exists?(@user.id) %>
-	<%= link_to "Send Friend Request", add_friend_path(@user), method: :post, class: "btn btn-default" %>
+<%= link_to "My friends", friends_path(@user)%>
+<% if current_user.friend_invites(@user) %>
+  <button class="btn btn-warning"> Pending Invitation </button>
+<% elsif current_user.receive_invitation(@user)%>
+  <%= link_to 'Accept', accept_request_path(user_id: @user.id)%>
+  <%= link_to 'Decline', deny_request_path(user_id: @user.id), method: :delete,  %>
+<% elsif !current_user.friend?(@user) && current_user.id != @user.id %>
+  <%= link_to 'Add Friend', add_friend_path(user_id: @user.id) , class:"btn btn-success" %>
+  <% elsif current_user.friend?(@user) %>
+  <%= link_to 'Remove friend', delete_friend_path(user_id: @user.id), method: :delete, data: {confirm: "Are you sure you want to remove friend?"}, class: "btn btn-danger" %>
 <% end %>
+
 </section>
