@@ -10,11 +10,10 @@ Rails.application.routes.draw do
     resources :likes, only: [:create, :destroy]
   end
 
-
-  get 'friends', to: 'friendships#index', as: 'friends'
-  get 'friends/create/:id', to: 'friendships#create', as: 'add_friend'
-  get 'friends/accept.:id', to: 'friendships#accept', as: 'accept_request'
-  delete 'friends/deny/:id', to: 'friendships#deny', as: 'deny_request'
-  delete 'friends/delete/:id', to: 'friendships#destroy', as: 'delete_friend'
+  get 'friends', to: 'friendships#index'
+  get 'add_friend', to: 'friendships#create'
+  get 'accept_request', to: 'friendships#accept'
+  delete 'deny_request', to: 'friendships#deny'
+  delete 'delete_friend', to: 'friendships#destroy'
  
 end
