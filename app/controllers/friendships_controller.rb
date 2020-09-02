@@ -17,7 +17,7 @@ class FriendshipsController < ApplicationController
 
   def deny
     current_user.reject_invites(params[:user_id])
-    flash[:danger] = "Friend request has been declined."
+    flash[:danger] = 'Friend request has been declined.'
     redirect_to users_path
   end
 

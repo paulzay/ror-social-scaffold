@@ -12,7 +12,7 @@
   <button class="btn btn-warning"> Pending Invitation </button>
 <% elsif current_user.receive_invitation(@user)%>
   <%= link_to 'Accept', accept_request_path(user_id: @user.id)%>
-  <%= link_to 'Decline', deny_request_path(user_id: @user.id), method: :delete,  %>
+  <%= link_to 'Decline', deny_request_path(user_id: @user.id), method: :delete %>
 <% elsif !current_user.friend?(@user) && current_user.id != @user.id %>
   <%= link_to 'Add Friend', add_friend_path(user_id: @user.id) , class:"btn btn-success" %>
   <% elsif current_user.friend?(@user) %>
