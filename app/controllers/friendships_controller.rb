@@ -1,6 +1,10 @@
 class FriendshipsController < ApplicationController
   before_action :authenticate_user!
 
+  def index
+    @friends_list = current_user.friends
+  end
+
   def create
     return unless current_user.send_invitation(params[:user_id])
 
@@ -26,16 +30,19 @@ class FriendshipsController < ApplicationController
   end
 
   def destroy
-    user = User.find(params[:user_id])
-    friend = current_user.friendships.find_by_friend_id(user)
-    return unless friend
-
-    friend.delete
-    flash[:notice] = 'has been successfully removed from your friends list.'
-    redirect_to users_path
+    friend = User.find_by_id(params[:user_id])
+    inv = Friendship.find_by(user: friend, friend: current_user)
+    not_inv = Friendship.find_by(user: current_user, friend: friend)
+    if inv || not_inv
+      inv&.destroy
+      not_inv&.destroy
+      flash[:notice] = 'Frendship terminated'
+      redirect_to users_path
+    else
+      flash[:danger] = 'Error occured'
+      redirect_to users_path
+    end
   end
 
-  def friends_list
-    @friends_list = current_user.friends
-  end
+
 end
