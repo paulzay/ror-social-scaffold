@@ -15,6 +15,10 @@ module FriendshipsHelper
     inverse_friendships.map { |friendship| friendship.user unless friendship.confirmed }.compact
   end
 
+  # def requested_friends
+  #   inverse_friendships.map { |friendship| friendship.user unless friendship.confirmed }.compact
+  # end
+
   def confirm_friend(user)
     friendship = inverse_friendships.find { |friendship| friendship.user == user }
     friendship.confirmed = true
@@ -23,5 +27,13 @@ module FriendshipsHelper
 
   def friend?(user)
     friends.include?(user)
+  end
+
+  def counts?(friends)
+    if (friends.nil? || friends.count < 0  || requested_friends.count < 0)
+      render 'friendships/no_friend'
+    else
+      render 'friendships/requested_friends'
+    end  
   end
 end

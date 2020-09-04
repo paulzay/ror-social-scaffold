@@ -20,3 +20,39 @@
 <% end %>
 
 </section>
+
+<aside>
+
+<div class="panel panel-default">
+<% if @user.friends.count > 0  %>
+<h2 style="text-align:center" class="panel panel-primary">My Friends</h2>
+	<table class="table table-striped">
+		<th>
+			<tr>
+				<th>Name</th>
+				<th> Request </th>
+			</tr>
+		</th>
+		<tbody>
+			<% @user.friends.each do |friend| %>
+			<tr>	
+				<td><%= friend.friend.name %></td>
+				<td>
+					<%= link_to "View Profile", user_path(friend), class:"btn btn-primary btn-xs" %>
+					
+				</td>
+			</tr>
+			<% end %>
+			
+	
+
+		</tbody>
+	</table>
+<% else %>
+
+		<p class="lead", align = "center"> You don't have any friends yet. Go out and make some. </p>
+
+<% end %>
+</div>
+</div>
+</aside>
