@@ -6,53 +6,13 @@
       <%= render @posts %>
     </ul>
   </article>
-
-<%= link_to "My friends", friends_path(@user)%>
-<% if current_user.friend_invites(@user) %>
-  <button> Pending Invitation </button>
-<% elsif current_user.receive_invitation(@user)%>
-  <%= link_to 'Accept', accept_request_path(user_id: @user.id)%>
-  <%= link_to 'Decline', deny_request_path(user_id: @user.id), method: :delete %>
-<% elsif !current_user.friend?(@user) && current_user.id != @user.id %>
-  <%= link_to 'Add Friend', add_friend_path(user_id: @user.id)%>
-  <% elsif current_user.friend?(@user) %>
-  <%= link_to 'Remove friend', delete_friend_path(user_id: @user.id), method: :delete, data: {confirm: "Are you sure you want to remove friend?"}, class: "btn btn-danger" %>
-<% end %>
-
+<%= friend_btn(@user) %>
 </section>
 
-<aside>
-
-<div class="panel panel-default">
-<% if @user.friends.count > 0  %>
-<h2 style="text-align:center" class="panel panel-primary">My Friends</h2>
-	<table class="table table-striped">
-		<th>
-			<tr>
-				<th>Name</th>
-				<th> Request </th>
-			</tr>
-		</th>
-		<tbody>
-			<% @user.friends.each do |friend| %>
-			<tr>	
-				<td><%= friend.friend.name %></td>
-				<td>
-					<%= link_to "View Profile", user_path(friend), class:"btn btn-primary btn-xs" %>
-					
-				</td>
-			</tr>
-			<% end %>
-			
-	
-
-		</tbody>
-	</table>
-<% else %>
-
-		<p class="lead", align = "center"> You don't have any friends yet. Go out and make some. </p>
-
-<% end %>
-</div>
-</div>
-</aside>
+  <h3>Pending invitations</h3>
+  <% @pending_invitations.uniq.each do |invitation| %>
+  <ul>
+  <li><%= invitation.name%></li>
+  
+  </ul>
+  <% end %>
