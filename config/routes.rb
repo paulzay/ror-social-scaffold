@@ -10,6 +10,13 @@ Rails.application.routes.draw do
     resources :likes, only: [:create, :destroy]
   end
 
+  resources :friends do
+    member do
+      put :accept
+      put :deny
+    end
+  end
+
   get 'friends', to: 'friendships#index'
   get 'add_friend', to: 'friendships#create'
   get 'accept_request', to: 'friendships#accept'

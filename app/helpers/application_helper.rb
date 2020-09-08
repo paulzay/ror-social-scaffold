@@ -20,16 +20,24 @@ module ApplicationHelper
     if current_user.friend_invites(user)
       'Pending Invite'
     elsif current_user.receive_invitation(user)
-      link_to('Accept', accept_request_path(user_id: user.id))
+
       link_to('Decline', deny_request_path(user_id: user.id), method: :delete)
 
     elsif !current_user.friend?(user) && current_user.id != user.id
+
       link_to 'Add Friend', add_friend_path(user_id: user.id)
     elsif current_user.friend?(user)
+
       link_to 'Remove friend', delete_friend_path(user_id: user.id),
               method: :delete,
               data: { confirm: 'Are you sure you want to remove friend?' },
               class: 'btn btn-danger'
     end
+  end
+
+  def friend_accept(user)
+    return unless current_user.friend?(user) == user || current_user.receive_invitation(user)
+
+    link_to('Accept', accept_request_path(user_id: user.id))
   end
 end

@@ -7,11 +7,17 @@
     </ul>
   </article>
 <%= friend_btn(@user) %>
+      <%= friend_accept(@user) %>
+
+
+
+
+
 </section>
 
   <h3>Pending invitations</h3>
   <% @pending_invitations.uniq.each do |invitation| %>
-  <ul>
+  <ul></ul>
   <li><%= invitation.name%></li>
   
   </ul>
