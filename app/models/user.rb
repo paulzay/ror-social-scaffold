@@ -25,7 +25,7 @@ class User < ApplicationRecord
     friends_array = friendships.map { |friendship| friendship.friend if friendship.confirmed }
     friends_arrayb = inverse_friendships.map { |friendship| friendship.user if friendship.confirmed }
     friends_array.concat(friends_arrayb)
-    friends_array.compact
+    friends_array.compact.uniq
   end
 
   # Users who have yet to confirmed friend invites
@@ -54,6 +54,9 @@ class User < ApplicationRecord
     friendship = inverse_friendships.where(user_id: user).first
     friendship.confirmed = true
     friendship.save
+    inverse_friend_confirm = friendships.create(friend_id: user)
+    inverse_friend_confirm.confirmed = true
+    inverse_friend_confirm.save
   end
 
   def reject_invites(user)
