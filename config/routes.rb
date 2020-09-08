@@ -10,5 +10,17 @@ Rails.application.routes.draw do
     resources :likes, only: [:create, :destroy]
   end
 
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  resources :friends do
+    member do
+      put :accept
+      put :deny
+    end
+  end
+
+  get 'friends', to: 'friendships#index'
+  get 'add_friend', to: 'friendships#create'
+  get 'accept_request', to: 'friendships#accept'
+  delete 'deny_request', to: 'friendships#deny'
+  delete 'delete_friend', to: 'friendships#destroy'
+ 
 end

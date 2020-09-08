@@ -1,0 +1,34 @@
+<h2 style="text-align:center" class="panel panel-primary">My Friends</h2>
+	<table class="table table-striped">
+		<th>
+			<tr>
+				<th>Name</th>
+				<th> Request </th>
+			</tr>
+		</th>
+		<tbody>
+			<% @friends.each do |friend| %>
+			<tr>	
+				<td><%= friend.friend.name %></td>
+				<td>
+					<%= link_to "View Profile", user_path(friend), class:"btn btn-primary btn-xs" %>
+					
+				</td>
+			</tr>
+			<% end %>
+			
+			<% @requested_friends.each do |requested_friend| %>
+			<tr>
+			
+				<td><%= requested_friend.name %></td>
+				<td>
+					<%= link_to "View Profile", user_path(requested_friend), class:"btn btn-primary btn-xs" %>
+					<%= link_to "Accept", accept_request_path(requested_friend), method: :put, class:"btn btn-default btn-xs" %>
+					
+					
+				</td>
+			</tr>
+			<% end %>
+
+		</tbody>
+	</table>
