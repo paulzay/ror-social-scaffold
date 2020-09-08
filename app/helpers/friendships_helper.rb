@@ -30,10 +30,10 @@ module FriendshipsHelper
   end
 
   def counts?(friends)
-    if (friends.nil? || friends.count < 0  || requested_friends.count < 0)
+    if friends.nil? || friends.count.negative? || requested_friends.negative?
       render 'friendships/no_friend'
     else
       render 'friendships/requested_friends'
-    end  
+    end
   end
 end
